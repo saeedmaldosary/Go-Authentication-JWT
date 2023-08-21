@@ -16,7 +16,7 @@ func ConnectToDB() {
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
-		panic("Failed to connect to DB")
+		panic("Failed to connect to DB.")
 	}
 
 }
