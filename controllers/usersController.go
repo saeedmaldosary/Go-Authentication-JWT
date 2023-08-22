@@ -94,7 +94,7 @@ func Login(c *gin.Context) {
 	})
 
 	// Sign and get the complete encoded token as a string using the secret
-	tokenString, err := token.SignedString([]byte(os.Getenv("SECERTE")))
+	tokenString, err := token.SignedString([]byte(os.Getenv("SECRETE")))
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -110,4 +110,12 @@ func Login(c *gin.Context) {
 	c.SetCookie("Authorization", tokenString, 3600*24*30, "", "", false, true)
 
 	c.JSON(http.StatusOK, gin.H{"token": tokenString})
+}
+
+func Validate(c *gin.Context) {
+	user, _ := c.Get("user")
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": user,
+	})
 }
